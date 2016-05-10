@@ -1,0 +1,78 @@
+
+
+
+
+class MyString
+
+  def initialize(str) #init a string
+    @str = str
+  end
+
+
+  def my_sort(arr) #reverse sort method
+    swap = true
+    size = arr.length - 1
+    while swap
+      swap = false
+      for i in 0...size
+        swap |= arr[i] < arr[i + 1]
+        arr[i], arr[i+1] = arr[i + 1], arr[i] if arr[i] < arr[i + 1]
+      end
+      size -= 1
+    end
+  end
+
+
+
+  def calculate_beauty()  #calculating main task
+
+    #creating empty hash, where key is a kind of different letters
+    #and value is a count of them
+    my_hash = {}
+
+
+    @str.downcase! # regidter dosnt matter!
+    @str.each_char do |letter|   # fill our hash
+      if letter !~ /\D/ || letter == " " || letter == ","
+        next
+      elsif my_hash.has_key?(letter)
+        my_hash[letter] += 1
+      else
+        my_hash[letter] = 1
+      end
+    end
+
+    #creating an empty array and fill it with values fro hash
+
+    my_array = []
+
+    my_hash.each_value do |value|
+      my_array.push(value)
+    end
+
+    #because the letter with max count has max value use reverse sort method
+
+    my_sort(my_array)
+
+
+    summ = 0          #answer constant
+    max_beauty = 26   #max letter value constant
+
+
+    my_array.each do |smthng|
+
+      summ += smthng * max_beauty
+      max_beauty -= 1
+
+
+    end
+
+    puts(summ) #print answer
+
+
+  end
+end
+
+
+a = MyString.new("ABbCcc")
+a.calculate_beauty()
