@@ -1,0 +1,24 @@
+class MyArr
+
+  def initialize(arr)
+    @arr = arr
+  end
+
+  def calc_count()
+    my_hash = {}
+
+    @arr.each do |digit|
+      if my_hash.has_key?(digit)
+        my_hash[digit] += 1
+      else
+        my_hash[digit] = 1
+      end
+    end
+    return my_hash
+  end
+
+end
+
+
+example = MyArr.new([1, 1, 'a', 5, 7])
+print(example.calc_count)
