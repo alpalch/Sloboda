@@ -41,7 +41,7 @@ class MyString
         my_hash[letter] = 1
       end
     end
-
+    print(my_hash)
     #creating an empty array and fill it with values fro hash
 
     my_array = []
